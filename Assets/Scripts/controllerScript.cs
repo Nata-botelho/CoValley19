@@ -10,9 +10,11 @@ public class controllerScript : MonoBehaviour
     private List<skillTreeScript> skill_tree;
     private List<eventScript> events_list;
     private localScript local;
+    private playerScript player;
 
-    public controllerScript(localScript _local){
+    public controllerScript(localScript _local, playerScript _player){
         this.local = _local;
+        this.player = _player;
     }
 
     private void Start() {
