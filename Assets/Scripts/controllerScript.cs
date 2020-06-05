@@ -8,7 +8,7 @@ public class controllerScript : MonoBehaviour
     private int research_progress;
     private int contamination_rate;
     private List<skillTreeScript> skill_tree;
-    private List<eventScript> events_list;
+    private eventScript events;
     private localScript local;
     private playerScript player;
 
@@ -22,7 +22,6 @@ public class controllerScript : MonoBehaviour
         research_progress = 0;
         contamination_rate = 0;    
         skill_tree = new List<skillTreeScript>();
-        events_list = new List<eventScript>();
     }
 
     private void Update() {

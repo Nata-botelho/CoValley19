@@ -12,11 +12,11 @@ public abstract class characterScript : MonoBehaviour
 	private List<Util.Effects> efeitos;
 	private List<Util.Symptoms> sintomas;
 
-	public characterScript(string name, int xp, int health, Sprite sprite){
-		this.characterName = name;
-		this.xp = xp;
-		this.health = health;
-		//inicialização do arquvio SPRITE
+	public characterScript(string _name, int _xp, int _health, Sprite _sprite){
+		this.characterName = _name;
+		this.xp = _xp;
+		this.health = _health;
+		this.sprite = _sprite;
 	}
 
 	public string getName(){
