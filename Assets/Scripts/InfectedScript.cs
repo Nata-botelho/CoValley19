@@ -5,7 +5,7 @@ using UnityEngine;
 public class InfectedScript : characterScript
 {
 	
-    public InfectedScript(string name, int xp, int health, Sprite sprite) : base(name, xp, health, sprite){}
+    public InfectedScript(string name, int xp, int health) : base(name, xp, health){}
 
     //public void setSymptoms(List<Util.Effects> efeitos){
 

@@ -12,11 +12,11 @@ public abstract class characterScript : MonoBehaviour
 	private List<Util.Effects> efeitos;
 	private List<Util.Symptoms> sintomas;
 
-	public characterScript(string _name, int _xp, int _health, Sprite _sprite){
+	public characterScript(string _name, int _xp, int _health){
 		this.characterName = _name;
 		this.xp = _xp;
 		this.health = _health;
-		this.sprite = _sprite;
+		//this.sprite = _sprite;
 	}
 
 	public string getName(){
@@ -28,9 +28,9 @@ public abstract class characterScript : MonoBehaviour
 	public int getHealth(){
 		return health;
 	}
-	public Sprite GetSprite(){
+	/*public Sprite GetSprite(){
 		return this.sprite;
-	}
+	}*/
 
 	/*public List<Util.Effects> getListEffects(){
         List<Util.Effects> copy = (List<Util.Effetcs>) Util.CopyArray(efeitos);

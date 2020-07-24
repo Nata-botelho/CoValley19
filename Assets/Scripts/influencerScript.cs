@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class influencerScript : characterScript
 {
-    public influencerScript(string name, int xp, int health, Sprite sprite) : base(name, xp, health, sprite){}
+    public influencerScript(string name, int xp, int health) : base(name, xp, health){}
 
 	new public void setSymptoms(List<Util.Effects> efeitos){
 
