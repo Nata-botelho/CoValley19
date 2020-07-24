@@ -9,6 +9,7 @@ public class eventScript : ScriptableObject
     public int event_ID;
     public string event_name;
     public string event_description;
+    public bool activatedEvent = false;
 
     private List<eventListenerScript> eventListeners = new List<eventListenerScript>(); 
 
@@ -41,5 +42,6 @@ public class eventScript : ScriptableObject
         for(i=eventListeners.Count-1; i>=0; i--){
             eventListeners[i].onEventRaised(this);
         }
+        this.activatedEvent = true;
     }
 }

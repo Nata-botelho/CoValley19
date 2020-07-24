@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c75c9c5daeb99de4bbb7da226ea91c0c, type: 3}
-  m_Name: idleEvent
+  m_Name: firstContamination
   m_EditorClassIdentifier: 
   during_time: -1
-  event_ID: 0
-  event_name: Normalidade
-  event_description: Nada fora do comum acontecendo
+  event_ID: 1
+  event_name: "Primeira contamina\xE7\xE3o"
+  event_description: "Uma nova doen\xE7a surgiu e come\xE7ou a se espalhar"
   activatedEvent: 1

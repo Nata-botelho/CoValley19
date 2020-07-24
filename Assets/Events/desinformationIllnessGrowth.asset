@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c75c9c5daeb99de4bbb7da226ea91c0c, type: 3}
-  m_Name: idleEvent
+  m_Name: desinformationIllnessGrowth
   m_EditorClassIdentifier: 
-  during_time: -1
-  event_ID: 0
-  event_name: Normalidade
-  event_description: Nada fora do comum acontecendo
+  during_time: 0
+  event_ID: 4
+  event_name: "Desinforma\xE7\xE3o"
+  event_description: "Por falta de divulga\xE7\xE3o de dados sobre a doen\xE7a, as
+    pessoas continuam com seus comportamentos normais, o que agrava o grau de contamina\xE7\xE3o"
   activatedEvent: 1

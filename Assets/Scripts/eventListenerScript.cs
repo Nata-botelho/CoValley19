@@ -27,5 +27,6 @@ public class eventListenerScript : MonoBehaviour
 
     public void onEventRaised(eventScript incomingEvent){
         Response.Invoke();
+        this.enabled = false;
     }
 }

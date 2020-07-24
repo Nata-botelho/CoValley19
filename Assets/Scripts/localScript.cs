@@ -21,14 +21,14 @@ public class localScript : MonoBehaviour
     private Text influencerCounter;
     private Text publicMCounter;
     private Text researcherCounter;
-    private Text medicValueText;
-    private Text influencerValueText;
-    private Text publicMValueText;
-    private Text researcherValueText;
-    private int medicValue;
-    private int influencerValue;
-    private int publicMValue;
-    private int researcherValue;
+    private Text medicPriceText;
+    private Text influencerPriceText;
+    private Text publicMPriceText;
+    private Text researcherPriceText;
+    private int medicPrice;
+    private int influencerPrice;
+    private int publicMPrice;
+    private int researcherPrice;
     
     public localScript(string _name, int _ier, int _ihr, int _iir){
         name = _name;
@@ -82,20 +82,36 @@ public class localScript : MonoBehaviour
         return copy;
     }
 
-    public int getMedicValue(){
-        return this.medicValue;
+    public int getMedicPrice(){
+        return this.medicPrice;
     }
 
-    public int getPublicMValue(){
-        return this.publicMValue;
+    public int getPublicMPrice(){
+        return this.publicMPrice;
     }
 
-    public int getResearcherValue(){
-        return this.researcherValue;
+    public int getResearcherPrice(){
+        return this.researcherPrice;
     }
 
-    public int getInfluencerValue(){
-        return this.influencerValue;
+    public int getInfluencerPrice(){
+        return this.influencerPrice;
+    }
+
+    public int getMedicCount(){
+        return this.medicList.Count;
+    }
+
+    public int getResearcherCount(){
+        return this.researchersList.Count;
+    }
+
+    public int getPManagerCount(){
+        return this.publicManagerList.Count;
+    }
+
+    public int getInfluencerCount(){
+        return this.influencersList.Count;
     }
 
     //FUNCTIONS
@@ -114,19 +130,19 @@ public class localScript : MonoBehaviour
         researcherCounter = GameObject.Find("RCounter").GetComponent<Text>(); 
         updateCharactersCount(medicList.Count, influencersList.Count, publicManagerList.Count, researchersList.Count);
 
-        medicValueText = GameObject.Find("MValue").GetComponent<Text>();
-        publicMValueText = GameObject.Find("PValue").GetComponent<Text>();
-        influencerValueText = GameObject.Find("IValue").GetComponent<Text>();
-        researcherValueText = GameObject.Find("RValue").GetComponent<Text>();
+        medicPriceText = GameObject.Find("MPrice").GetComponent<Text>();
+        publicMPriceText = GameObject.Find("PPrice").GetComponent<Text>();
+        influencerPriceText = GameObject.Find("IPrice").GetComponent<Text>();
+        researcherPriceText = GameObject.Find("RPrice").GetComponent<Text>();
 
-        medicValue = 100;
-        publicMValue = 100;
-        influencerValue = 100;
-        researcherValue = 100;
-        updateCharacterValue("Medic", medicValue);
-        updateCharacterValue("PManager", publicMValue);
-        updateCharacterValue("Influencer", influencerValue);
-        updateCharacterValue("Researcher", researcherValue);
+        medicPrice = 100;
+        publicMPrice = 100;
+        influencerPrice = 100;
+        researcherPrice = 100;
+        updateCharacterPrice("Medic", medicPrice);
+        updateCharacterPrice("PManager", publicMPrice);
+        updateCharacterPrice("Influencer", influencerPrice);
+        updateCharacterPrice("Researcher", researcherPrice);
     }
 
     public void updateEconomicalRate(int value){
@@ -146,8 +162,8 @@ public class localScript : MonoBehaviour
         newMedic = new medicScript("teste", 0, 0);
         this.medicList.Add(newMedic);
         updateCharactersCount(medicList.Count, influencersList.Count, publicManagerList.Count, researchersList.Count);
-        medicValue += 100;
-        updateCharacterValue("Medic", medicValue);
+        medicPrice += 100;
+        updateCharacterPrice("Medic", medicPrice);
     }
 
     public void addNewPublicManager(){
@@ -155,8 +171,8 @@ public class localScript : MonoBehaviour
         newPManager = new publicmanagerScript("teste", 0, 0);
         this.publicManagerList.Add(newPManager);
         updateCharactersCount(medicList.Count, influencersList.Count, publicManagerList.Count, researchersList.Count);
-        publicMValue += 100;
-        updateCharacterValue("PManager", publicMValue);
+        publicMPrice += 100;
+        updateCharacterPrice("PManager", publicMPrice);
     }
 
     public void addNewInfluencer(){
@@ -164,8 +180,8 @@ public class localScript : MonoBehaviour
         newInfluencer = new influencerScript("teste", 0, 0);
         this.influencersList.Add(newInfluencer);
         updateCharactersCount(medicList.Count, influencersList.Count, publicManagerList.Count, researchersList.Count);
-        influencerValue += 100;
-        updateCharacterValue("Influencer", influencerValue);
+        influencerPrice += 100;
+        updateCharacterPrice("Influencer", influencerPrice);
     }
 
     public void addNewReasearcher(){
@@ -173,8 +189,8 @@ public class localScript : MonoBehaviour
         newResearcher = new researcherScript("teste", 0, 0);
         this.researchersList.Add(newResearcher);
         updateCharactersCount(medicList.Count, influencersList.Count, publicManagerList.Count, researchersList.Count);
-        researcherValue += 100;
-        updateCharacterValue("Researcher", researcherValue);
+        researcherPrice += 100;
+        updateCharacterPrice("Researcher", researcherPrice);
     }
 
     public void updateCharactersCount(int mCounter, int ICounter, int PCounter, int RCounter){
@@ -184,18 +200,18 @@ public class localScript : MonoBehaviour
         researcherCounter.text = RCounter.ToString();
     }
 
-    private void updateCharacterValue(string character, int value){
+    private void updateCharacterPrice(string character, int value){
         if(character.Equals("Medic")){
-            medicValueText.text = "R$ "+value+",00";
+            medicPriceText.text = "R$ "+value+",00";
         }
         else if(character.Equals("PManager")){
-            publicMValueText.text = "R$ "+value+",00";
+            publicMPriceText.text = "R$ "+value+",00";
         }
         else if(character.Equals("Researcher")){
-            researcherValueText.text = "R$ "+value+",00";
+            researcherPriceText.text = "R$ "+value+",00";
         }
         else if(character.Equals("Influencer")){
-            influencerValueText.text = "R$ "+value+",00";
+            influencerPriceText.text = "R$ "+value+",00";
         }
     }
 }

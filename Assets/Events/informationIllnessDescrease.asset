@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c75c9c5daeb99de4bbb7da226ea91c0c, type: 3}
-  m_Name: idleEvent
+  m_Name: informationIllnessDescrease
   m_EditorClassIdentifier: 
-  during_time: -1
-  event_ID: 0
-  event_name: Normalidade
-  event_description: Nada fora do comum acontecendo
-  activatedEvent: 1
+  during_time: 0
+  event_ID: 6
+  event_name: "Informa\xE7\xE3o disseminada"
+  event_description: "Gra\xE7as ao trabalho dos influenciadores foi poss\xEDvel difundir
+    informa\xE7\xF5es sobre a doen\xE7a e m\xE9todos de profilaxia, o que reduz a
+    taxa de contamina\xE7\xE3o"
+  activatedEvent: 0

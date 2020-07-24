@@ -25,6 +25,11 @@ public class controllerScript : MonoBehaviour
     private int contamination_rate;
     private int money_counter;
 
+    private int incResearchValue;
+    private int incContamiValue;
+    private int incMoneyValue;
+    private int lastResearcherCounter = 0;
+
     private List<skillTreeScript> skill_tree;
     private localScript local;
     private playerScript player;
@@ -34,7 +39,7 @@ public class controllerScript : MonoBehaviour
     private Button publicMButton;
     private Button researcherButton;
 
-    private bool startedFlag;
+    private bool startedFlag = false;
     private Button startButton;
     private Button restartButton;
     private Button creditsButton;
@@ -54,8 +59,8 @@ public class controllerScript : MonoBehaviour
 
     private void Update() {
         if(startedFlag){
-            elapseTime();
-            this.gameObject.GetComponent<eventTriggerScript>().executeEvent(0);
+            elapseTime(incResearchValue, incContamiValue, incMoneyValue);
+
         }
         checkEndGame();
     }
@@ -71,6 +76,10 @@ public class controllerScript : MonoBehaviour
 
     public int getContaminationRate(){
         return this.contamination_rate;
+    }
+
+    public bool getStartFlag(){
+        return this.startedFlag;
     }
 
     //FUNCTIONS
@@ -113,7 +122,11 @@ public class controllerScript : MonoBehaviour
         daysUI.text = value.ToString();
     }
 
-    public void incrementResearchProgress(int value){
+    public void incrementResearchValue(int value){
+        incResearchValue += value;
+    }
+
+    private void incrementResearchProgress(int value){
         research_progress += value;
     }
 
@@ -122,7 +135,12 @@ public class controllerScript : MonoBehaviour
         research_percent.text = value+"%";
     }
 
-    public void incrementContaminationRate(int value){
+    public void incrementContaminationValue(int value){
+        incContamiValue += value;
+        print("cont value agr eh: "+incContamiValue);
+    }
+
+    private void incrementContamination(int value){
         contamination_rate += value;
     }
 
@@ -139,57 +157,58 @@ public class controllerScript : MonoBehaviour
         moneyUI.text = value.ToString();
     }
 
-    private void elapseTime(){
+    private void elapseTime(int incResearchValue, int incContamiValue, int incMoneyValue){
         timer += Time.deltaTime;
         if(timer > day_duration){
-            incrementResearchProgress(1);
+            incrementResearchProgress(incResearchValue);
             updateResearchSlider(this.research_progress);
-            incrementContaminationRate(1);
+            incrementContamination(incContamiValue);
             updateContaminationSlider(this.contamination_rate);
-            incrementMoney(100);
+            incrementMoney(incMoneyValue);
             incrementDays();
             updateMoney(this.money_counter);
             updateDays(this.days_counter);
+            checkResearchers();
             timer = timer-day_duration;
         }
     }
 
     private void buyMedics(){
-        if(local.getMedicValue() <= this.money_counter){
-            incrementMoney(-local.getMedicValue());
+        if(local.getMedicPrice() <= this.money_counter){
+            incrementMoney(-local.getMedicPrice());
             updateMoney(this.money_counter);
             local.addNewMedic();
         }
     }
 
     private void buyPManagers(){
-        if(local.getPublicMValue() <= this.money_counter){
-            incrementMoney(-local.getPublicMValue());
+        if(local.getPublicMPrice() <= this.money_counter){
+            incrementMoney(-local.getPublicMPrice());
             updateMoney(this.money_counter);
             local.addNewPublicManager();
         }
     }
 
     private void buyResearchers(){
-        if(local.getResearcherValue() <= this.money_counter){
-            incrementMoney(-local.getResearcherValue());
+        if(local.getResearcherPrice() <= this.money_counter){
+            incrementMoney(-local.getResearcherPrice());
             updateMoney(this.money_counter);
             local.addNewReasearcher();
         }
     }
 
     private void buyInfluencers(){
-        if(local.getInfluencerValue() <= this.money_counter){
-            incrementMoney(-local.getInfluencerValue());
+        if(local.getInfluencerPrice() <= this.money_counter){
+            incrementMoney(-local.getInfluencerPrice());
             updateMoney(this.money_counter);
             local.addNewInfluencer();
         }
     }    
 
     private void checkEndGame(){
-        if(this.contamination_rate == 100)
+        if(this.contamination_rate >= 100)
             endGame("Defeat");
-        else if(this.research_progress == 100)
+        else if(this.research_progress >= 100)
             endGame("Victory");
     }
 
@@ -209,11 +228,15 @@ public class controllerScript : MonoBehaviour
         victoryScreen.SetActive(false);
     
         timer = 0.0f;
-        day_duration = 5.0f;
+        day_duration = 1.0f;
         days_counter = 0;
         money_counter = 0;
         research_progress = 0;
-        contamination_rate = 0;    
+        contamination_rate = 0;   
+
+        incResearchValue = 0;
+        incContamiValue = 0; 
+        incMoneyValue = 100;
 
         updateContaminationSlider(contamination_rate);
         updateResearchSlider(research_progress);
@@ -225,8 +248,26 @@ public class controllerScript : MonoBehaviour
     }
 
     public void activateEvent(int id){
-        print("ativando evento de id "+id);
         eventName.text = this.GetComponent<eventTriggerScript>().eventsList[id].event_name;
         eventDescription.text = this.GetComponent<eventTriggerScript>().eventsList[id].event_description;
     }
+
+    public void checkResearchers(){;
+        if(local.getResearcherCount() == lastResearcherCounter+2){
+            incResearchValue++;
+            lastResearcherCounter += 2;
+        }
+    }
+
+    /*private void addListeners(){
+        eventListenerScript eventListener;
+        foreach(eventScript nEvent in this.GetComponent<eventTriggerScript>().eventsList){
+            GameObject listenerInstance = new GameObject();
+            listenerInstance.transform.SetParent(transform, false);
+            listenerInstance.gameObject.AddComponent<eventListenerScript>();
+            eventListener = listenerInstance.gameObject.GetComponent<eventListenerScript>();
+            eventListener.gameEvent = nEvent;
+            eventListener.Response.AddListener(() => {this.activateEvent(nEvent.event_ID);});
+        }
+    }*/
 }
