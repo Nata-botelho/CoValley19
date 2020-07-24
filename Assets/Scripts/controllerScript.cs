@@ -259,15 +259,11 @@ public class controllerScript : MonoBehaviour
         }
     }
 
-    /*private void addListeners(){
-        eventListenerScript eventListener;
-        foreach(eventScript nEvent in this.GetComponent<eventTriggerScript>().eventsList){
-            GameObject listenerInstance = new GameObject();
-            listenerInstance.transform.SetParent(transform, false);
-            listenerInstance.gameObject.AddComponent<eventListenerScript>();
-            eventListener = listenerInstance.gameObject.GetComponent<eventListenerScript>();
-            eventListener.gameEvent = nEvent;
-            eventListener.Response.AddListener(() => {this.activateEvent(nEvent.event_ID);});
-        }
-    }*/
+    public void pauseGame(){
+        Time.timeScale = 0;
+    }
+
+    public void resumeGame(){
+        Time.timeScale = 1;
+    }
 }

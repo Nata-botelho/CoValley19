@@ -37,14 +37,6 @@ public class localScript : MonoBehaviour
         initial_industrial_rate = _iir;
     }
 
-    private void Start() {
-        //initializeAll();
-    }
-
-    private void Update() {
-        
-    }
-
     //GETTERS
     public int getEconomicalRate(){
         return this.economical_rate;

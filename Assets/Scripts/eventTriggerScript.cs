@@ -32,19 +32,17 @@ public class eventTriggerScript : MonoBehaviour
         if(controller.getDaysCounter()>15 && probability(12-(local.getInfluencerCount()*2)) && eventsList[4].activatedEvent == false)    executeEvent(4);
         if(controller.getDaysCounter()>20 && probability((local.getMedicCount()*3)) && eventsList[5].activatedEvent == false)    executeEvent(5);
         if(controller.getDaysCounter()>25 && probability((local.getInfluencerCount()*3)) && eventsList[6].activatedEvent == false)    executeEvent(6);
-        //if(probability(controller.getDaysCounter()*2) && eventsList[7].activatedEvent == false)    executeEvent(7);
     }
 
     private void executeEvent(int id){
         eventsList[id].Raise();
-        //print("executando evento "+id);
     }
 
     private bool probability(int chance){
         int result;
 
         result = Random.Range(0, 100);
-        //print(result+" <= "+chance*5);
+
         if(result <= 5*chance)
             return true;
         

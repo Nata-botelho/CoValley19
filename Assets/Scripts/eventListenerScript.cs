@@ -16,14 +16,6 @@ public class eventListenerScript : MonoBehaviour
     private void OnDisable() {
         gameEvent.unrigisterListener(this);
     }
-    
-    /*public void initializeEvents(List<eventScript> events){
-        int i;
-        for(i=events.Count-1; i >= 0; i--){
-            Response.AddListener(() => this.gameObject.GetComponent<controllerScript>().activateEvent(events[i].event_ID));
-            print("inicianlizando evento "+events[i].event_name);
-        }
-    }*/
 
     public void onEventRaised(eventScript incomingEvent){
         Response.Invoke();
