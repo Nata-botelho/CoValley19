@@ -228,7 +228,7 @@ public class controllerScript : MonoBehaviour
         victoryScreen.SetActive(false);
     
         timer = 0.0f;
-        day_duration = 1.0f;
+        day_duration = 3.0f;
         days_counter = 0;
         money_counter = 0;
         research_progress = 0;
@@ -243,6 +243,7 @@ public class controllerScript : MonoBehaviour
         updateDays(days_counter);
         updateMoney(money_counter);
         local.initializeAll();
+        this.gameObject.GetComponent<eventTriggerScript>().initializeEvents();
         startedFlag = true;
         mainMenu.enabled = false;
     }

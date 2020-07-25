@@ -12,9 +12,7 @@ public class eventTriggerScript : MonoBehaviour
     private void Start() {
         controller = GameObject.Find("MainController").GetComponent<controllerScript>();
         local = GameObject.Find("GamePanel").GetComponent<localScript>();
-        foreach(eventScript nEvent in eventsList){
-            nEvent.activatedEvent = false;
-        }
+        initializeEvents();
     }
 
     private void Update() {
@@ -27,11 +25,11 @@ public class eventTriggerScript : MonoBehaviour
 
     private void checkEvents(){
         if(probability(controller.getDaysCounter()*2) && eventsList[1].activatedEvent == false)    executeEvent(1); //10% por dia
-        if(probability(local.getResearcherCount()*5) && eventsList[2].activatedEvent == false)    executeEvent(2);  //25% por pesquisador
-        if(controller.getDaysCounter()>10 && probability(8-(local.getMedicCount()*2)) && eventsList[3].activatedEvent == false)    executeEvent(3);
-        if(controller.getDaysCounter()>15 && probability(12-(local.getInfluencerCount()*2)) && eventsList[4].activatedEvent == false)    executeEvent(4);
-        if(controller.getDaysCounter()>20 && probability((local.getMedicCount()*3)) && eventsList[5].activatedEvent == false)    executeEvent(5);
-        if(controller.getDaysCounter()>25 && probability((local.getInfluencerCount()*3)) && eventsList[6].activatedEvent == false)    executeEvent(6);
+        else if(probability(local.getResearcherCount()*5) && eventsList[2].activatedEvent == false)    executeEvent(2);  //25% por pesquisador
+        else if(controller.getDaysCounter()>10 && probability(8-(local.getMedicCount()*2)) && eventsList[3].activatedEvent == false)    executeEvent(3);
+        else if(controller.getDaysCounter()>15 && probability(12-(local.getInfluencerCount()*2)) && eventsList[4].activatedEvent == false)    executeEvent(4);
+        else if(controller.getDaysCounter()>20 && probability((local.getMedicCount()*3)) && eventsList[5].activatedEvent == false)    executeEvent(5);
+        else if(controller.getDaysCounter()>25 && probability((local.getInfluencerCount()*3)) && eventsList[6].activatedEvent == false)    executeEvent(6);
     }
 
     private void executeEvent(int id){
@@ -47,5 +45,11 @@ public class eventTriggerScript : MonoBehaviour
             return true;
         
         return false;
+    }
+
+    public void initializeEvents(){
+        foreach(eventScript nEvent in eventsList){
+            nEvent.activatedEvent = false;
+        }
     }
 }
